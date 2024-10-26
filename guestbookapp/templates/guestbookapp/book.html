@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Fuente básica */
+            background-color: #f4f4f4; /* Color de fondo */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar horizontalmente */
+            height: auto; /* Altura automática para permitir contenido */
+        }
+
+        .container {
+            background-color: white; /* Color de fondo del formulario */
+            padding: 20px; /* Espaciado interno */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+            width: 500px; /* Ancho del formulario aumentado */
+            margin-bottom: 20px; /* Espacio debajo del contenedor */
+            margin-top:20px;
+        }
+
+        h1 {
+            text-align: center; /* Centrar el título */
+            color: #333; /* Color del texto */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column; /* Colocar elementos en columna */
+        }
+
+        input, textarea {
+            width: 100%; /* Ancho completo */
+            padding: 10px; /* Espaciado interno */
+            margin-bottom: 10px; /* Espacio entre campos */
+            border: 1px solid #ddd; /* Borde ligero */
+            border-radius: 5px; /* Bordes redondeados */
+            box-sizing: border-box; /* Incluye padding y border en el ancho total */
+        }
+
+        button {
+            background-color: #007bff; /* Color azul */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px; /* Espaciado interno */
+            cursor: pointer; /* Cambiar cursor al pasar por encima */
+            font-size: 16px; /* Tamaño de fuente */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+        }
+
+        h2 {
+            text-align: center; /* Centrar el título de comentarios */
+            color: #333; /* Color del texto */
+            width: 100%; /* Ancho completo */
+            margin: 20px 0 10px 0; /* Espacio superior e inferior */
+        }
+
+        ul {
+            list-style-type: none; /* Quitar viñetas */
+            padding: 0; /* Sin padding */
+            width: 100%; /* Ancho completo */
+            max-width: 600px; /* Ancho máximo */
+            margin: 0 auto; /* Centrar horizontalmente */
+        }
+
+        li {
+            background-color: #f9f9f9; /* Color de fondo de los comentarios */
+            border: 1px solid #ddd; /* Borde ligero */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px; /* Espaciado interno */
+            margin-bottom: 10px; /* Espacio entre comentarios */
+            box-sizing: border-box; /* Incluye padding y border en el ancho total */
+        }
+
+        img {
+            max-width: 50px; /* Ancho máximo de la imagen */
+            max-height: 50px; /* Altura máxima de la imagen */
+            display: block; /* Asegurarse de que la imagen esté en su propia línea */
+            margin-top: 5px; /* Espacio encima de la imagen */
+        }
+        table {
+            width: 50%; /* Ajusta el ancho de la tabla */
+            border-collapse: collapse; /* Elimina el espacio entre bordes de las celdas */
+        }
+        th, td {
+            padding: 15px; /* Espacio interno de 15 píxeles */
+            border: 1px solid #ddd; /* Bordes de las celdas */
+            text-align: left; /* Alineación del texto */
+        }
+        th {
+            background-color: #f2f2f2; /* Color de fondo para el encabezado */
+        }
+    </style>
+    <title>Guest Book</title>
+</head>
+   {% block content %}
+
+   <body>
+    <div class="container">
+        <h1>Libro de Visitas</h1>
+        <!-- Formulario para agregar un comentario -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renderiza el formulario como párrafos -->
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <h2>Comentarios</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Mensaje</th>
+            <th>Fecha de Creación</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td><strong>{{ comment.name }}</strong></td>
+                <td>{{ comment.message }}</td>
+                <td><em>{{ comment.create_at }}</em></td>
+                <td>
+                    {% if comment.image %}
+                        <img src="{{ comment.image.url }}" alt="Imagen de {{ comment.name }}" style="max-width: 50px; max-height: 50px;">
+                    {% else %}
+                        No hay imagen
+                    {% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No hay comentarios aún.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
+{% endblock %}

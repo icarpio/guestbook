@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Book</title>
+</head>
+<body>
+    {% block content %}
+    <h1>¡Bienvenidos al Libro de Visitas</h1>
+    <p>¿Te gustaría conocer mejor a tus visitantes y hacer que cada uno se sienta bienvenido? ¡Te presentamos nuestro libro de visitas respaldado por PostgreSQL!</p>
+    <p>Este sistema es mucho más que una simple lista de firmas: es una herramienta poderosa que captura y organiza mensajes, comentarios y datos de quienes visitan tu sitio o establecimiento.</p> 
+    <p>Con la robustez de PostgreSQL, cada mensaje se almacena de forma segura, permitiendo un acceso rápido y una estructura optimizada para búsquedas avanzadas, análisis y administración personalizada. Así, puedes revisar las experiencias de tus visitantes con solo un par de clics.</p> <p>Este libro de visitas es ideal para páginas web, oficinas de atención al cliente, exposiciones y cualquier lugar donde tus visitantes merezcan ser escuchados. La base de datos te ayudará a fortalecer la relación con tus usuarios y a entender mejor sus necesidades, impulsando su experiencia al siguiente nivel.</p> 
+    <p>¡Déjalos compartir sus impresiones y lleva tu sitio al siguiente nivel con la seguridad y eficacia de PostgreSQL!</p>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <!-- Enlace al libro de visitas -->
+        <a href="{% url 'guest_book' %}">Ir al Libro de Visitas</a>
+    </div>
+</body>
+</html>
+{% endblock %}
