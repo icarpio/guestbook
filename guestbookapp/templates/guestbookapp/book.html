@@ -148,9 +148,10 @@
             {% csrf_token %}
             {{ form.as_p }}  <!-- Renderiza el formulario como párrafos -->
             <button type="submit">Enviar</button>
+            <br>
+            <button type="button" onclick="window.location.href='{% url 'index' %}'">Volver</button>
         </form>
     </div>
-
     <h2>Comentarios</h2>
 <table>
     <thead>
@@ -174,6 +175,7 @@
         {% endfor %}
     </tbody>
 </table>
+
 </body>
 </html>
 {% endblock %}
