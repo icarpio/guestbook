@@ -12,7 +12,6 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centrar horizontalmente */
-            height: auto; /* Altura automática para permitir contenido */
         }
 
         .container {
@@ -20,9 +19,9 @@
             padding: 20px; /* Espaciado interno */
             border-radius: 8px; /* Bordes redondeados */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
-            width: 500px; /* Ancho del formulario aumentado */
-            margin-bottom: 20px; /* Espacio debajo del contenedor */
-            margin-top:20px;
+            width: 90%; /* Ancho del formulario ajustado para móviles */
+            max-width: 500px; /* Ancho máximo del formulario */
+            margin: 20px 0; /* Espacio arriba y abajo */
         }
 
         h1 {
@@ -89,17 +88,52 @@
             display: block; /* Asegurarse de que la imagen esté en su propia línea */
             margin-top: 5px; /* Espacio encima de la imagen */
         }
+
         table {
-            width: 50%; /* Ajusta el ancho de la tabla */
+            width: 100%; /* Ajusta el ancho de la tabla */
             border-collapse: collapse; /* Elimina el espacio entre bordes de las celdas */
+            margin-top: 20px; /* Espacio superior para la tabla */
         }
+
         th, td {
             padding: 15px; /* Espacio interno de 15 píxeles */
             border: 1px solid #ddd; /* Bordes de las celdas */
             text-align: left; /* Alineación del texto */
         }
+
         th {
             background-color: #f2f2f2; /* Color de fondo para el encabezado */
+        }
+
+        /* Media Queries para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%; /* Ancho del formulario ajustado para móviles */
+                margin: 10px 0; /* Espacio arriba y abajo */
+            }
+
+            table {
+                font-size: 14px; /* Tamaño de fuente ajustado para móviles */
+            }
+
+            th, td {
+                padding: 10px; /* Espacio interno ajustado para móviles */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%; /* Ancho del formulario ajustado para móviles */
+                margin: 5px 0; /* Espacio arriba y abajo */
+            }
+
+            table {
+                font-size: 12px; /* Tamaño de fuente ajustado para móviles */
+            }
+
+            th, td {
+                padding: 5px; /* Espacio interno ajustado para móviles */
+            }
         }
     </style>
     <title>Guest Book</title>
