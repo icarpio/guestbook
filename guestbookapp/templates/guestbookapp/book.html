@@ -124,7 +124,6 @@
             <th>Nombre</th>
             <th>Mensaje</th>
             <th>Fecha de Creación</th>
-            <th>Imagen</th>
         </tr>
     </thead>
     <tbody>
@@ -133,13 +132,6 @@
                 <td><strong>{{ comment.name }}</strong></td>
                 <td>{{ comment.message }}</td>
                 <td><em>{{ comment.create_at }}</em></td>
-                <td>
-                    {% if comment.image %}
-                        <img src="{{ comment.image.url }}" alt="Imagen de {{ comment.name }}" style="max-width: 50px; max-height: 50px;">
-                    {% else %}
-                        No hay imagen
-                    {% endif %}
-                </td>
             </tr>
         {% empty %}
             <tr>

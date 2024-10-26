@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from .forms import CommentForm
 from .models import Comment
@@ -12,10 +13,8 @@ def guest_book(request):
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            print(Comment.objects.all().order_by('-create_at'))
             return redirect('guest_book')
     else:
         form = CommentForm()
     comments = Comment.objects.all().order_by('-create_at')
-    print(comments)
     return render(request, 'guestbookapp/book.html', {'form': form, 'comments': comments})
