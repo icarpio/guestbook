@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('guestbookapp.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Servir archivos multimedia en desarrollo y producción
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
